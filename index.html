@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<title>• glypchat •</title>
-
-<!-- ВСТАВЛЯЙ СЮДА ЭТИ ТРИ СТРОЧКИ: -->
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22glypchat%22%2C%22short_name%22%3A%22glypchat%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23000000%22%2C%22theme_color%22%3A%22%23000000%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22icon.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
-
-<script src="https://cdn.tailwindcss.com"></script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>•glypchat•</title>
@@ -50,8 +41,7 @@
       border: 1px solid rgba(124, 58, 237, 0.25);
       box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8);
       border-radius: 32px;
-      position: relative;
-      z-index: 10;
+      position: relative; z-index: 10;
     }
     .glass-panel {
       background: rgba(18, 16, 28, 0.55);
@@ -66,18 +56,14 @@
       transition: all 0.3s ease;
       color: #e2e0ff;
     }
-    .input-glow:focus {
-      outline: none;
-      border-color: #a78bfa;
-      box-shadow: 0 0 18px rgba(124,58,237,0.5);
-    }
+    .input-glow:focus { outline: none; border-color: #a78bfa; box-shadow: 0 0 18px rgba(124,58,237,0.5); }
     .btn-primary {
       background: linear-gradient(135deg, #7c3aed, #4f46e5);
       color: white; font-weight: 600;
       border-radius: 20px; padding: 12px 16px;
       box-shadow: 0 8px 22px -8px #7c3aed;
       border: none; cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
     .btn-primary:hover { box-shadow: 0 12px 28px -6px #7c3aed, 0 0 20px #a78bfa; transform: translateY(-1px); }
     .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; transform: none; }
@@ -86,7 +72,7 @@
       color: white; font-weight: 600;
       border: none; cursor: pointer;
       border-radius: 12px; padding: 8px 16px;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
     .btn-accept:hover { box-shadow: 0 8px 20px rgba(16,185,129,0.7); transform: translateY(-1px); }
     .btn-danger {
@@ -94,14 +80,14 @@
       border: 1px solid rgba(239, 68, 68, 0.4);
       color: #fca5a5; cursor: pointer;
       border-radius: 12px; padding: 8px 16px;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
     .btn-danger:hover { background: rgba(239, 68, 68, 0.4); }
     .btn-icon {
       background: rgba(124, 58, 237, 0.15);
       border: 1px solid rgba(124, 58, 237, 0.3);
       color: #e0d7ff; cursor: pointer;
-      border-radius: 12px; transition: all 0.2s;
+      border-radius: 12px; transition: all 0.3s ease;
       display: flex; align-items: center; justify-content: center;
     }
     .btn-icon:hover { background: rgba(124, 58, 237, 0.3); box-shadow: 0 0 18px #7c3aedcc; }
@@ -123,122 +109,90 @@
     ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 8px; }
     .hidden { display: none !important; }
 
-    .logo-static {
-      font-weight: 900;
-      color: #60a5fa;
-      letter-spacing: -0.5px;
-    }
+    .logo-static { font-weight: 900; color: #60a5fa; letter-spacing: -0.5px; }
 
     .main-app {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      overflow: hidden;
-      z-index: 10;
-      margin: 0; padding: 0;
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh; overflow: hidden;
+      z-index: 10; margin: 0; padding: 0;
     }
-    .app-container {
-      display: flex;
-      width: 100%; height: 100%;
-      gap: 0;
-    }
+    .app-container { display: flex; width: 100%; height: 100%; gap: 0; }
     .sidebar-panel {
       width: 260px; min-width: 260px; max-width: 260px;
-      height: 100%; flex-shrink: 0;
-      border-radius: 0;
+      height: 100%; flex-shrink: 0; border-radius: 0;
       border-right: 1px solid rgba(124, 58, 237, 0.15);
       display: flex; flex-direction: column; overflow: hidden;
       background: rgba(8, 6, 15, 0.7);
     }
-    .chat-panel {
-      flex: 1; min-width: 0; height: 100%;
-      border-radius: 0;
-      display: flex; flex-direction: column; overflow: hidden;
-    }
+    .chat-panel { flex: 1; min-width: 0; height: 100%; border-radius: 0; display: flex; flex-direction: column; overflow: hidden; }
     .requests-panel {
       width: 280px; min-width: 280px; max-width: 280px;
-      height: 100%; flex-shrink: 0;
-      border-radius: 0;
+      height: 100%; flex-shrink: 0; border-radius: 0;
       border-left: 1px solid rgba(124, 58, 237, 0.15);
       display: flex; flex-direction: column; overflow: hidden;
       background: rgba(8, 6, 15, 0.7);
     }
     .auth-overlay {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 20;
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center; z-index: 20;
     }
     .call-modal {
-      position: fixed; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 100;
-      background: rgba(10, 8, 18, 0.95);
-      backdrop-filter: blur(30px);
-      border: 2px solid #7c3aed;
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 100; background: rgba(10, 8, 18, 0.95);
+      backdrop-filter: blur(30px); border: 2px solid #7c3aed;
       border-radius: 24px; padding: 30px;
       box-shadow: 0 0 60px rgba(124,58,237,0.5);
       min-width: 350px; max-width: 95vw;
+      animation: modalSlideIn 0.3s ease;
     }
-    video {
-      width: 100%; max-width: 400px;
-      border-radius: 16px;
-      border: 2px solid #7c3aed;
-      background: #000;
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     }
-    .contact-item {
-      transition: all 0.15s ease;
-      cursor: pointer;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+    .msg-fade { animation: fadeIn 0.3s ease; }
+    video { width: 100%; max-width: 400px; border-radius: 16px; border: 2px solid #7c3aed; background: #000; }
+    .contact-item { transition: all 0.3s ease; cursor: pointer; }
     .contact-item:hover { background: rgba(124, 58, 237, 0.15); }
-    .contact-item.active {
-      background: rgba(124, 58, 237, 0.25);
-      border-left: 3px solid #a78bfa;
-    }
-    .verified-badge {
-      color: #3b82f6;
-      margin-left: 5px;
-      font-size: 0.75rem;
-    }
-    .tab-btn {
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-    .tab-btn.active {
-      background: rgba(124, 58, 237, 0.4);
-      color: white;
-    }
+    .contact-item.active { background: rgba(124, 58, 237, 0.25); border-left: 3px solid #a78bfa; }
+    .verified-badge { color: #3b82f6; margin-left: 5px; font-size: 0.75rem; }
+    .tab-btn { padding: 8px 16px; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer; }
+    .tab-btn.active { background: rgba(124, 58, 237, 0.4); color: white; }
     .call-btn {
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 12px;
-      background: rgba(124, 58, 237, 0.15);
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      color: #e0d7ff; cursor: pointer;
-      transition: all 0.2s;
-      flex-shrink: 0;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border-radius: 12px; background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(124, 58, 237, 0.3); color: #e0d7ff;
+      cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
     }
     .call-btn:hover { background: rgba(124, 58, 237, 0.3); box-shadow: 0 0 18px #7c3aedcc; }
     .call-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 
+    /* Тумблер */
+    .switch { position: relative; display: inline-block; width: 48px; height: 26px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(124,58,237,0.3); transition: 0.3s; border-radius: 26px; }
+    .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: 0.3s; border-radius: 50%; }
+    input:checked + .slider { background-color: #10b981; }
+    input:checked + .slider:before { transform: translateX(22px); }
+
+    /* Точки печати */
+    .typing-dots { display: inline-flex; gap: 3px; align-items: center; margin-left: 4px; }
+    .typing-dots span { width: 4px; height: 4px; border-radius: 50%; background: #a78bfa; animation: typingDot 1.4s infinite; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot { 0%,80%,100% { transform: scale(0.6); opacity: 0.4; } 40% { transform: scale(1.3); opacity: 1; } }
+
     @media (max-width: 768px) {
-      .main-app {
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        width: 100vw; height: 100vh; height: -webkit-fill-available;
-      }
+      .main-app { position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; height: -webkit-fill-available; }
       .app-container { flex-direction: column; }
       .sidebar-panel { display: none !important; }
       .requests-panel { display: none !important; }
       .mobile-header { display: flex !important; }
       .mobile-tabs { display: flex !important; }
-      .chat-panel {
-        width: 100% !important; flex: 1 !important;
-        border-radius: 0 !important;
-      }
+      .chat-panel { width: 100% !important; flex: 1 !important; border-radius: 0 !important; }
       .btn-primary { padding: 14px 18px; font-size: 16px; }
       .input-glow { padding: 14px 16px; font-size: 16px; }
       .message-input-container { padding: 12px 12px 20px 12px; }
@@ -247,109 +201,59 @@
       video { max-width: 100%; }
       .glass-form { margin: 16px; width: calc(100% - 32px); max-width: 100%; }
     }
-
-    @media (min-width: 769px) {
-      .mobile-header { display: none !important; }
-      .mobile-tabs { display: none !important; }
-    }
+    @media (min-width: 769px) { .mobile-header { display: none !important; } .mobile-tabs { display: none !important; } }
   </style>
 </head>
 <body>
   <div class="animated-bg"></div>
   <div class="bg-particles"></div>
 
-  <!-- ЭКРАН АВТОРИЗАЦИИ -->
   <div id="auth-screen" class="auth-overlay">
     <div class="glass-form w-full max-w-md mx-4 p-7 md:p-8 text-gray-200">
-      <div class="text-center mb-6">
-        <div class="text-4xl mb-2">🌌</div>
-        <h2 class="text-2xl font-bold text-white" id="authTitle">glypchat • Регистрация</h2>
-        <p class="text-purple-300/70 text-sm mt-1">Приватное общение с друзьями</p>
-      </div>
+      <div class="text-center mb-6"><div class="text-4xl mb-2">🌌</div><h2 class="text-2xl font-bold text-white" id="authTitle">glypchat • Регистрация</h2><p class="text-purple-300/70 text-sm mt-1">Приватное общение с друзьями</p></div>
       <form id="authForm" class="space-y-4" novalidate>
-        <div id="displayNameGroup">
-          <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Имя</label>
-          <input type="text" id="displayName" placeholder="Ваше имя" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-        </div>
-        <div>
-          <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label>
-          <input type="text" id="usernameField" placeholder="@username" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-          <p class="text-[10px] text-purple-300/60 mt-1 ml-1">@ добавляется автоматически</p>
-        </div>
-        <div>
-          <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Email</label>
-          <input type="email" id="emailField" placeholder="your@email.com" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-        </div>
-        <div>
-          <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Пароль</label>
-          <input type="password" id="passwordField" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-        </div>
-        <div id="confirmPasswordGroup">
-          <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Подтверждение</label>
-          <input type="password" id="confirmPasswordField" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-          <p id="passwordMatchError" class="text-red-400 text-xs mt-1 ml-1 hidden">Пароли не совпадают</p>
-        </div>
-        <button type="submit" class="btn-primary w-full mt-2 flex items-center justify-center gap-2">
-          <i class="fas fa-user-plus"></i> <span id="submitBtnText">Зарегистрироваться</span>
-        </button>
+        <div id="displayNameGroup"><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Имя</label><input type="text" id="displayName" placeholder="Ваше имя" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+        <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label><input type="text" id="usernameField" placeholder="@username" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"><p class="text-[10px] text-purple-300/60 mt-1 ml-1">@ добавляется автоматически</p></div>
+        <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Email</label><input type="email" id="emailField" placeholder="your@email.com" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+        <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Пароль</label><input type="password" id="passwordField" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+        <div id="confirmPasswordGroup"><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Подтверждение</label><input type="password" id="confirmPasswordField" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"><p id="passwordMatchError" class="text-red-400 text-xs mt-1 ml-1 hidden">Пароли не совпадают</p></div>
+        <button type="submit" class="btn-primary w-full mt-2 flex items-center justify-center gap-2"><i class="fas fa-user-plus"></i> <span id="submitBtnText">Зарегистрироваться</span></button>
       </form>
-      <p class="text-center text-xs text-gray-500 mt-4">
-        <span id="toggleText">Уже есть аккаунт?</span>
-        <a href="#" id="toggleAuthBtn" class="text-purple-400 hover:underline ml-1">Войти</a>
-      </p>
+      <p class="text-center text-xs text-gray-500 mt-4"><span id="toggleText">Уже есть аккаунт?</span> <a href="#" id="toggleAuthBtn" class="text-purple-400 hover:underline ml-1">Войти</a></p>
       <div id="authError" class="hidden bg-red-900/30 border border-red-500/40 text-red-300 p-3 rounded-xl mt-3 text-sm"></div>
       <div id="authSuccess" class="hidden bg-green-900/30 border border-green-500/40 text-green-300 p-3 rounded-xl mt-3 text-sm"></div>
     </div>
   </div>
 
-  <!-- ЭКРАН ПОДТВЕРЖДЕНИЯ ПОЧТЫ -->
   <div id="verifyEmailScreen" class="auth-overlay hidden">
     <div class="glass-form w-full max-w-md mx-4 p-7 md:p-8 text-gray-200">
-      <div class="text-center mb-6">
-        <div class="text-5xl mb-3">📧</div>
-        <h2 class="text-2xl font-bold text-white">glypchat • Подтвердите почту</h2>
-        <p class="text-purple-300/70 text-sm mt-2">Мы отправили письмо на <strong id="verifyEmailAddress"></strong></p>
-        <p class="text-gray-400 text-xs mt-1">Пожалуйста, проверьте папку "Входящие" или "Спам"</p>
-      </div>
+      <div class="text-center mb-6"><div class="text-5xl mb-3">📧</div><h2 class="text-2xl font-bold text-white">glypchat • Подтвердите почту</h2><p class="text-purple-300/70 text-sm mt-2">Мы отправили письмо на <strong id="verifyEmailAddress"></strong></p><p class="text-gray-400 text-xs mt-1">Пожалуйста, проверьте папку "Входящие" или "Спам"</p></div>
       <div class="space-y-3">
-        <button onclick="resendVerificationEmail()" id="resendVerificationBtn" class="btn-primary w-full flex items-center justify-center gap-2"><i class="fas fa-envelope"></i> Отправить письмо ещё раз</button>
+        <button onclick="resendVerificationEmail()" id="resendVerificationBtn" class="btn-primary w-full"><i class="fas fa-envelope"></i> Отправить письмо ещё раз</button>
         <button onclick="checkEmailVerified()" class="btn-accent w-full flex items-center justify-center gap-2 bg-purple-800/40 hover:bg-purple-700/50 text-white font-semibold py-3 rounded-2xl border border-purple-500/30 transition"><i class="fas fa-check-circle"></i> Я подтвердил почту</button>
         <button onclick="logout()" class="text-gray-400 hover:text-white text-sm text-center w-full mt-2 transition"><i class="fas fa-sign-out-alt mr-1"></i> Выйти</button>
       </div>
     </div>
   </div>
 
-  <!-- ОСНОВНОЙ ИНТЕРФЕЙС -->
   <div id="mainApp" class="main-app">
     <div class="app-container">
-      
       <div class="glass-panel sidebar-panel">
         <div class="p-4 border-b border-purple-500/20">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="logo-static text-lg">glypchat</h3>
-            <span id="friendsCount" class="text-xs bg-purple-900/40 px-2 py-0.5 rounded-full text-purple-200">0</span>
-          </div>
-          <div class="relative">
-            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-purple-300/60 text-sm"></i>
-            <input type="text" id="searchUsers" placeholder="Поиск по username..." class="w-full bg-black/30 border border-purple-500/25 rounded-2xl py-2.5 pl-9 pr-4 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-purple-400">
-          </div>
+          <div class="flex items-center justify-between mb-3"><h3 class="logo-static text-lg">glypchat</h3><span id="friendsCount" class="text-xs bg-purple-900/40 px-2 py-0.5 rounded-full text-purple-200">0</span></div>
+          <div class="relative"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-purple-300/60 text-sm"></i><input type="text" id="searchUsers" placeholder="Поиск по username..." class="w-full bg-black/30 border border-purple-500/25 rounded-2xl py-2.5 pl-9 pr-4 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-purple-400"></div>
           <div id="searchResults" class="mt-2 space-y-1 hidden max-h-48 overflow-y-auto"></div>
         </div>
         <div class="flex-1 overflow-y-auto p-2 space-y-0.5" id="friendsList"><p class="text-gray-500 text-sm text-center mt-8">У вас пока нет друзей</p></div>
         <div class="p-3 border-t border-purple-500/20 flex items-center gap-3 bg-black/20">
           <div class="avatar-ring w-10 h-10 flex-shrink-0"><div id="userAvatarSmall">?</div></div>
-          <div class="flex-1 min-w-0">
-            <p class="text-white text-sm font-semibold truncate" id="currentUserName">—</p>
-            <p class="text-gray-400 text-xs truncate" id="currentUserUsername">—</p>
-          </div>
+          <div class="flex-1 min-w-0"><p class="text-white text-sm font-semibold truncate" id="currentUserName">—</p><p class="text-gray-400 text-xs truncate" id="currentUserUsername">—</p></div>
           <button onclick="openDesktopProfile()" class="text-gray-400 hover:text-white transition ml-1" title="Настройки профиля"><i class="fas fa-cog"></i></button>
         </div>
       </div>
 
       <div class="mobile-header hidden w-full flex items-center justify-between px-4 py-3 bg-black/30 border-b border-purple-500/20">
-        <button onclick="toggleMobileSidebar()" class="text-white text-xl"><i class="fas fa-bars"></i></button>
-        <span class="logo-static text-lg">glypchat</span>
-        <button onclick="logout()" class="text-gray-400"><i class="fas fa-sign-out-alt"></i></button>
+        <button onclick="toggleMobileSidebar()" class="text-white text-xl"><i class="fas fa-bars"></i></button><span class="logo-static text-lg">glypchat</span><button onclick="logout()" class="text-gray-400"><i class="fas fa-sign-out-alt"></i></button>
       </div>
 
       <div class="mobile-tabs hidden w-full flex justify-center gap-2 py-2 bg-black/20 border-b border-purple-500/20">
@@ -361,7 +265,7 @@
         <div class="flex items-center justify-between px-5 py-3 border-b border-purple-500/20">
           <div class="flex items-center gap-3">
             <div class="avatar-ring w-10 h-10"><div id="chatAvatar">?</div></div>
-            <div><h2 id="chatTitle" class="font-semibold text-white text-base">Выберите друга</h2><p id="chatSubtitle" class="text-xs text-gray-400 hidden"></p></div>
+            <div><h2 id="chatTitle" class="font-semibold text-white text-base">Выберите друга</h2><p id="chatSubtitle" class="text-xs text-gray-400 hidden"></p><p id="typingIndicator" class="text-xs text-purple-400 hidden">печатает<span class="typing-dots"><span></span><span></span><span></span></span></p></div>
           </div>
           <div class="flex items-center gap-3" id="callButtons">
             <button id="voiceCallBtn" onclick="startCall('voice')" class="call-btn hidden" title="Голосовой звонок" disabled><i class="fas fa-phone text-sm"></i></button>
@@ -385,19 +289,10 @@
       <div id="mobileProfilePanel" class="glass-panel hidden flex-1 flex-col overflow-hidden">
         <h3 class="text-white font-semibold p-4 border-b border-purple-500/20">👤 Профиль</h3>
         <div class="flex-1 overflow-y-auto p-4 space-y-4">
-          <div class="text-center">
-            <div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="profileAvatarLarge" class="text-2xl">?</div></div>
-            <p class="text-white font-semibold" id="profileDisplayName">—</p>
-            <p class="text-gray-400 text-sm" id="profileUsername">—</p>
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Никнейм</label>
-            <input type="text" id="editDisplayName" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label>
-            <input type="text" id="editUsername" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-          </div>
+          <div class="text-center"><div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="profileAvatarLarge" class="text-2xl">?</div></div><p class="text-white font-semibold" id="profileDisplayName">—</p><p class="text-gray-400 text-sm" id="profileUsername">—</p></div>
+          <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Никнейм</label><input type="text" id="editDisplayName" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+          <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label><input type="text" id="editUsername" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+          <div class="flex items-center justify-between"><span class="text-white text-sm">🔔 Push-уведомления</span><label class="switch"><input type="checkbox" id="mobileNotifyToggle" onchange="saveNotifySetting()"><span class="slider"></span></label></div>
           <button onclick="saveProfile()" class="btn-primary w-full flex items-center justify-center gap-2">💾 Сохранить</button>
           <button onclick="logout()" class="btn-danger w-full flex items-center justify-center gap-2 py-3 rounded-2xl"><i class="fas fa-sign-out-alt"></i> Выйти</button>
         </div>
@@ -406,20 +301,11 @@
       <div id="desktopProfileModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center">
         <div class="glass-form w-full max-w-md mx-4 p-7 text-gray-200">
           <h3 class="text-white font-semibold text-lg mb-4 text-center">👤 Профиль</h3>
-          <div class="text-center mb-4">
-            <div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="desktopProfileAvatarLarge" class="text-2xl">?</div></div>
-            <p class="text-white font-semibold" id="desktopProfileDisplayName">—</p>
-            <p class="text-gray-400 text-sm" id="desktopProfileUsername">—</p>
-          </div>
+          <div class="text-center mb-4"><div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="desktopProfileAvatarLarge" class="text-2xl">?</div></div><p class="text-white font-semibold" id="desktopProfileDisplayName">—</p><p class="text-gray-400 text-sm" id="desktopProfileUsername">—</p></div>
           <div class="space-y-4">
-            <div>
-              <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Никнейм</label>
-              <input type="text" id="desktopEditDisplayName" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label>
-              <input type="text" id="desktopEditUsername" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500">
-            </div>
+            <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Никнейм</label><input type="text" id="desktopEditDisplayName" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+            <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label><input type="text" id="desktopEditUsername" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
+            <div class="flex items-center justify-between"><span class="text-white text-sm">🔔 Push-уведомления</span><label class="switch"><input type="checkbox" id="desktopNotifyToggle" onchange="saveNotifySetting()"><span class="slider"></span></label></div>
             <button onclick="saveDesktopProfile()" class="btn-primary w-full flex items-center justify-center gap-2">💾 Сохранить</button>
             <button onclick="closeDesktopProfile()" class="text-gray-400 hover:text-white text-sm w-full text-center">Отмена</button>
             <button onclick="logout()" class="btn-danger w-full flex items-center justify-center gap-2 py-3 rounded-2xl"><i class="fas fa-sign-out-alt"></i> Выйти</button>
@@ -441,12 +327,7 @@
         <button onclick="openMobileProfile(); toggleMobileSidebar();" class="w-full text-left text-white bg-purple-900/20 p-3 rounded-xl hover:bg-purple-900/40 transition">👤 Профиль</button>
         <button onclick="switchMobileTab('chats'); toggleMobileSidebar();" class="w-full text-left text-white bg-purple-900/20 p-3 rounded-xl hover:bg-purple-900/40 transition">💬 Чаты</button>
         <button onclick="switchMobileTab('requests'); toggleMobileSidebar();" class="w-full text-left text-white bg-purple-900/20 p-3 rounded-xl hover:bg-purple-900/40 transition">📥 Запросы</button>
-        <div class="border-t border-purple-500/20 pt-2 mt-2">
-          <p class="text-gray-400 text-xs mb-2">Друзья</p>
-          <div class="relative mb-3"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-purple-300/60 text-sm"></i><input type="text" id="mobileSearchUsers" placeholder="Поиск по username..." class="w-full bg-black/30 border border-purple-500/25 rounded-2xl py-2.5 pl-9 pr-4 text-sm text-gray-200 placeholder-gray-500 focus:outline-none"></div>
-          <div id="mobileSearchResults" class="mt-2 space-y-1 hidden max-h-32 overflow-y-auto"></div>
-          <div class="space-y-0.5" id="mobileFriendsList"><p class="text-gray-500 text-sm text-center mt-4">Загрузка...</p></div>
-        </div>
+        <div class="border-t border-purple-500/20 pt-2 mt-2"><p class="text-gray-400 text-xs mb-2">Друзья</p><div class="relative mb-3"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-purple-300/60 text-sm"></i><input type="text" id="mobileSearchUsers" placeholder="Поиск по username..." class="w-full bg-black/30 border border-purple-500/25 rounded-2xl py-2.5 pl-9 pr-4 text-sm text-gray-200 placeholder-gray-500 focus:outline-none"></div><div id="mobileSearchResults" class="mt-2 space-y-1 hidden max-h-32 overflow-y-auto"></div><div class="space-y-0.5" id="mobileFriendsList"><p class="text-gray-500 text-sm text-center mt-4">Загрузка...</p></div></div>
       </div>
     </div>
   </div>
@@ -482,6 +363,36 @@
     let isLoginMode = false;
     let currentMobileTab = 'chats';
     let pendingRequests = [];
+    let typingTimeout = null;
+    let notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
+
+    function requestNotificationPermission() {
+      if (notificationsEnabled && 'Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+    }
+
+    function sendPush(title, body) {
+      if (!notificationsEnabled) return;
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(title, { body, icon: '🌌' });
+      }
+    }
+
+    function saveNotifySetting() {
+      const mobile = document.getElementById('mobileNotifyToggle');
+      const desktop = document.getElementById('desktopNotifyToggle');
+      notificationsEnabled = (mobile?.checked) || (desktop?.checked) || false;
+      localStorage.setItem('notificationsEnabled', notificationsEnabled);
+      if (notificationsEnabled) requestNotificationPermission();
+    }
+
+    function applyNotifySetting() {
+      const mobile = document.getElementById('mobileNotifyToggle');
+      const desktop = document.getElementById('desktopNotifyToggle');
+      if (mobile) mobile.checked = notificationsEnabled;
+      if (desktop) desktop.checked = notificationsEnabled;
+    }
 
     function openDesktopProfile() {
       document.getElementById('desktopProfileAvatarLarge').textContent = currentUser.displayName[0];
@@ -490,6 +401,7 @@
       document.getElementById('desktopEditDisplayName').value = currentUser.displayName;
       document.getElementById('desktopEditUsername').value = currentUser.username;
       document.getElementById('desktopProfileModal').classList.remove('hidden');
+      applyNotifySetting();
     }
     function closeDesktopProfile() { document.getElementById('desktopProfileModal').classList.add('hidden'); }
     window.saveDesktopProfile = async () => {
@@ -506,6 +418,7 @@
       currentUser.displayName = newDisplayName;
       currentUser.username = newUsername;
       updateProfileUI();
+      saveNotifySetting();
       closeDesktopProfile();
       alert('Профиль обновлён!');
     };
@@ -527,6 +440,7 @@
       document.getElementById('profileUsername').textContent = currentUser.username;
       document.getElementById('editDisplayName').value = currentUser.displayName;
       document.getElementById('editUsername').value = currentUser.username;
+      applyNotifySetting();
     }
 
     window.saveProfile = async () => {
@@ -540,12 +454,12 @@
         if (!snap.empty) return alert('Этот username уже занят');
       }
       await db.collection('users').doc(currentUser.uid).update({ displayName: newDisplayName, username: newUsername });
-      currentUser.displayName = newDisplayName;
-      currentUser.username = newUsername;
+      currentUser.displayName = newDisplayName; currentUser.username = newUsername;
       document.getElementById('profileDisplayName').textContent = newDisplayName;
       document.getElementById('profileUsername').textContent = newUsername;
       updateProfileUI();
       document.getElementById('profileAvatarLarge').textContent = newDisplayName[0];
+      saveNotifySetting();
       alert('Профиль обновлён!');
     };
 
@@ -564,8 +478,7 @@
       if (pendingRequests.length === 0) { list.innerHTML = '<p class="text-gray-500 text-sm text-center mt-4">Нет входящих запросов</p>'; return; }
       const frag = document.createDocumentFragment();
       pendingRequests.forEach(r => {
-        const div = document.createElement('div');
-        div.className = 'bg-purple-900/20 p-3 rounded-xl border border-purple-500/20';
+        const div = document.createElement('div'); div.className = 'bg-purple-900/20 p-3 rounded-xl border border-purple-500/20';
         div.innerHTML = `<p class="text-white text-sm font-semibold">${r.sender.displayName}${getVerifiedBadge(r.sender)}</p><p class="text-gray-400 text-xs mb-2">${r.sender.username}</p><div class="flex gap-2"><button class="btn-accept text-xs px-3 py-1.5">✓ Принять</button><button class="btn-danger text-xs px-3 py-1.5">✕ Отклонить</button></div>`;
         div.querySelector('.btn-accept').onclick = () => acceptRequest(r.id);
         div.querySelector('.btn-danger').onclick = () => rejectRequest(r.id);
@@ -576,15 +489,15 @@
 
     function toggleMobileSidebar() { document.getElementById('mobileSidebar').classList.toggle('hidden'); if (!document.getElementById('mobileSidebar').classList.contains('hidden')) syncMobileFriendsList(); }
     function syncMobileFriendsList() { const list = document.getElementById('mobileFriendsList'); if (friendsData.length === 0) { list.innerHTML = '<p class="text-gray-500 text-sm text-center mt-4">У вас пока нет друзей</p>'; return; } const frag = document.createDocumentFragment(); friendsData.forEach(f => { const div = document.createElement('div'); div.className = `contact-item flex items-center gap-3 p-3 rounded-xl ${selectedFriend?.id === f.id ? 'active' : ''}`; div.onclick = () => { selectFriend(f.id); toggleMobileSidebar(); }; div.innerHTML = `<div class="avatar-ring w-10 h-10 flex-shrink-0"><div>${f.displayName[0]}</div></div><div class="flex-1 min-w-0"><p class="text-white text-sm font-semibold truncate">${f.displayName}${getVerifiedBadge(f)}</p><p class="text-gray-400 text-xs truncate">${f.username}</p></div>`; frag.appendChild(div); }); list.innerHTML = ''; list.appendChild(frag); }
-    document.getElementById('mobileSearchUsers').addEventListener('input', async (e) => { const query = e.target.value.trim(), container = document.getElementById('mobileSearchResults'); if (query.length < 1) { container.classList.add('hidden'); return; } const searchLower = query.toLowerCase(); const snapshot = await db.collection('users').orderBy('username').get(); const results = []; snapshot.forEach(doc => { if (doc.id === currentUser.uid) return; const data = doc.data(); if (data.username && data.username.toLowerCase().includes(searchLower)) { const isFriend = friendsData.some(f => f.id === doc.id); results.push({ id: doc.id, ...data, isFriend }); } }); container.innerHTML = results.length === 0 ? '<p class="text-gray-500 text-xs px-3 py-2">Ничего не найдено</p>' : results.slice(0, 10).map(u => `<div class="flex items-center justify-between p-2 rounded-xl bg-black/20"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center text-white text-xs font-bold">${u.displayName[0]}</div><div><p class="text-white text-xs font-semibold">${u.displayName}${getVerifiedBadge(u)}</p><p class="text-gray-400 text-[10px]">${u.username}</p></div></div>${u.isFriend ? '<span class="text-green-400 text-xs">✓ Друг</span>' : `<button onclick="sendFriendRequest('${u.id}')" class="text-purple-400 hover:text-purple-200 text-xs bg-purple-900/30 px-2 py-1 rounded-lg"><i class="fas fa-user-plus mr-1"></i>Добавить</button>`}</div>`).join(''); container.classList.remove('hidden'); });
+    document.getElementById('mobileSearchUsers').addEventListener('input', async (e) => { const query = e.target.value.trim(), container = document.getElementById('mobileSearchResults'); if (query.length < 1) { container.classList.add('hidden'); return; } const searchLower = query.toLowerCase(); const snapshot = await db.collection('users').orderBy('username').get(); const results = []; snapshot.forEach(doc => { if (doc.id === currentUser.uid) return; const data = doc.data(); if (data.username && data.username.toLowerCase().includes(searchLower)) { const isFriend = friendsData.some(f => f.id === doc.id); results.push({ id: doc.id, ...data, isFriend }); } }); container.innerHTML = results.length === 0 ? '<p class="text-gray-500 text-xs px-3 py-2">Ничего не найдено</p>' : results.slice(0,10).map(u => `<div class="flex items-center justify-between p-2 rounded-xl bg-black/20"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center text-white text-xs font-bold">${u.displayName[0]}</div><div><p class="text-white text-xs font-semibold">${u.displayName}${getVerifiedBadge(u)}</p><p class="text-gray-400 text-[10px]">${u.username}</p></div></div>${u.isFriend?'<span class="text-green-400 text-xs">✓ Друг</span>':`<button onclick="sendFriendRequest('${u.id}')" class="text-purple-400 hover:text-purple-200 text-xs bg-purple-900/30 px-2 py-1 rounded-lg"><i class="fas fa-user-plus mr-1"></i>Добавить</button>`}</div>`).join(''); container.classList.remove('hidden'); });
 
     function getVerifiedBadge(userData) { if (userData && userData.isVerified === true) return '<i class="fa-solid fa-circle-check verified-badge" title="Подтвержденный пользователь"></i>'; return ''; }
     function setupUsername() { const input = document.getElementById('usernameField'); if (!input) return; input.addEventListener('input', () => { let v = input.value; if (!v.startsWith('@')) v = '@' + v.replace(/@/g, ''); else v = '@' + v.substring(1).replace(/@/g, ''); input.value = v || '@'; }); input.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && input.selectionStart === 1) e.preventDefault(); }); if (input.value === '') input.value = '@'; }
     function showAuthError(msg) { const el = document.getElementById('authError'), s = document.getElementById('authSuccess'); el.textContent = msg; el.classList.remove('hidden'); s.classList.add('hidden'); setTimeout(() => el.classList.add('hidden'), 6000); }
     function showAuthSuccess(msg) { const el = document.getElementById('authSuccess'), e = document.getElementById('authError'); el.textContent = msg; el.classList.remove('hidden'); e.classList.add('hidden'); setTimeout(() => el.classList.add('hidden'), 6000); }
     function showVerifyEmailScreen(user) { document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('verifyEmailScreen').classList.remove('hidden'); document.getElementById('verifyEmailAddress').textContent = user.email; }
-    async function resendVerificationEmail() { const user = auth.currentUser; if (!user) return; const btn = document.getElementById('resendVerificationBtn'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...'; try { await user.sendEmailVerification(); showAuthSuccess('Письмо отправлено повторно!'); } catch (e) { showAuthError(e.code === 'auth/too-many-requests' ? 'Слишком много попыток.' : 'Ошибка: ' + e.message); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-envelope"></i> Отправить письмо ещё раз'; } }
-    async function checkEmailVerified() { const user = auth.currentUser; if (!user) return; try { await user.reload(); if (user.emailVerified) { await db.collection('users').doc(user.uid).update({ isVerified: false }); document.getElementById('verifyEmailScreen').classList.add('hidden'); const doc = await db.collection('users').doc(user.uid).get(); if (doc.exists) { currentUser = { uid: user.uid, ...doc.data() }; await db.collection('users').doc(user.uid).update({ status: 'online' }); document.getElementById('mainApp').style.display = 'block'; enterApp(); } } else showAuthError('Почта ещё не подтверждена.'); } catch (e) { showAuthError('Ошибка: ' + e.message); } }
+    async function resendVerificationEmail() { const user = auth.currentUser; if (!user) return; const btn = document.getElementById('resendVerificationBtn'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...'; try { await user.sendEmailVerification(); showAuthSuccess('Письмо отправлено повторно!'); } catch (e) { showAuthError(e.code==='auth/too-many-requests'?'Слишком много попыток.':'Ошибка: '+e.message); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-envelope"></i> Отправить письмо ещё раз'; } }
+    async function checkEmailVerified() { const user = auth.currentUser; if (!user) return; try { await user.reload(); if (user.emailVerified) { await db.collection('users').doc(user.uid).update({ isVerified: false }); document.getElementById('verifyEmailScreen').classList.add('hidden'); const doc = await db.collection('users').doc(user.uid).get(); if (doc.exists) { currentUser = { uid: user.uid, ...doc.data() }; await db.collection('users').doc(user.uid).update({ status: 'online' }); document.getElementById('mainApp').style.display = 'block'; enterApp(); } } else showAuthError('Почта ещё не подтверждена.'); } catch (e) { showAuthError('Ошибка: '+e.message); } }
 
     document.getElementById('toggleAuthBtn').addEventListener('click', (e) => { e.preventDefault(); isLoginMode = !isLoginMode; if (isLoginMode) { document.getElementById('authTitle').textContent = 'glypchat • Вход'; document.getElementById('submitBtnText').textContent = 'Войти'; document.getElementById('toggleText').textContent = 'Нет аккаунта?'; document.getElementById('toggleAuthBtn').textContent = 'Регистрация'; document.getElementById('displayNameGroup').classList.add('hidden'); document.getElementById('confirmPasswordGroup').classList.add('hidden'); } else { document.getElementById('authTitle').textContent = 'glypchat • Регистрация'; document.getElementById('submitBtnText').textContent = 'Зарегистрироваться'; document.getElementById('toggleText').textContent = 'Уже есть аккаунт?'; document.getElementById('toggleAuthBtn').textContent = 'Войти'; document.getElementById('displayNameGroup').classList.remove('hidden'); document.getElementById('confirmPasswordGroup').classList.remove('hidden'); } });
     document.getElementById('authForm').addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('emailField').value.trim(), pass = document.getElementById('passwordField').value, username = document.getElementById('usernameField').value, displayName = document.getElementById('displayName').value.trim(); if (username === '@' || username.length < 2) return showAuthError('Введите username после @'); if (pass.length < 6) return showAuthError('Пароль минимум 6 символов'); try { if (isLoginMode) { const uc = await auth.signInWithEmailAndPassword(email, pass); const u = uc.user; if (!u.emailVerified) { showVerifyEmailScreen(u); return; } const doc = await db.collection('users').doc(u.uid).get(); if (!doc.exists) { await auth.signOut(); return showAuthError('Профиль не найден'); } currentUser = { uid: u.uid, ...doc.data() }; await db.collection('users').doc(u.uid).update({ status: 'online' }); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'block'; enterApp(); } else { if (!displayName) return showAuthError('Введите имя'); if (pass !== document.getElementById('confirmPasswordField').value) { document.getElementById('passwordMatchError').classList.remove('hidden'); return; } const snap = await db.collection('users').where('username', '==', username).get(); if (!snap.empty) return showAuthError('Этот username уже занят'); const cred = await auth.createUserWithEmailAndPassword(email, pass); const u = cred.user; await db.collection('users').doc(u.uid).set({ username, displayName, email, status: 'online', isVerified: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() }); await u.sendEmailVerification(); showVerifyEmailScreen(u); } } catch (err) { showAuthError(err.message); } });
@@ -592,48 +505,47 @@
     function cleanupListeners() { if (messagesUnsubscribe) { messagesUnsubscribe(); messagesUnsubscribe = null; } if (callsUnsubscribe) { callsUnsubscribe(); callsUnsubscribe = null; } if (callSignalingUnsubscribe) { callSignalingUnsubscribe(); callSignalingUnsubscribe = null; } }
     window.logout = () => auth.signOut();
 
-    function enterApp() { updateProfileUI(); listenFriends(); listenRequests(); listenIncomingCalls(); }
+    function enterApp() { updateProfileUI(); listenFriends(); listenRequests(); listenIncomingCalls(); requestNotificationPermission(); }
     function listenFriends() { db.collection('friendships').where('participants', 'array-contains', currentUser.uid).onSnapshot(async (snap) => { friendsData = []; for (const d of snap.docs) { const fid = d.data().participants.find(id => id !== currentUser.uid); const fdoc = await db.collection('users').doc(fid).get(); if (fdoc.exists) friendsData.push({ id: fid, ...fdoc.data() }); } renderFriendsList(); syncMobileFriendsList(); }); }
     function renderFriendsList() { const list = document.getElementById('friendsList'); document.getElementById('friendsCount').textContent = friendsData.length; if (friendsData.length === 0) { list.innerHTML = '<p class="text-gray-500 text-sm text-center mt-8">У вас пока нет друзей</p>'; return; } const frag = document.createDocumentFragment(); friendsData.forEach(f => { const div = document.createElement('div'); div.className = `contact-item flex items-center gap-3 p-3 rounded-xl ${selectedFriend?.id === f.id ? 'active' : ''}`; div.onclick = () => selectFriend(f.id); div.innerHTML = `<div class="avatar-ring w-10 h-10 flex-shrink-0"><div>${f.displayName[0]}</div></div><div class="flex-1 min-w-0"><p class="text-white text-sm font-semibold truncate">${f.displayName}${getVerifiedBadge(f)}</p><p class="text-gray-400 text-xs truncate">${f.username}</p></div><span class="w-2 h-2 rounded-full ${f.status === 'online' ? 'bg-green-400' : 'bg-gray-600'} flex-shrink-0"></span>`; frag.appendChild(div); }); list.innerHTML = ''; list.appendChild(frag); }
 
     function listenRequests() { db.collection('friendRequests').where('receiverId', '==', currentUser.uid).where('status', '==', 'pending').onSnapshot(async (snap) => { pendingRequests = []; for (const d of snap.docs) { const sdoc = await db.collection('users').doc(d.data().senderId).get(); if (sdoc.exists) pendingRequests.push({ id: d.id, sender: sdoc.data() }); } updateRequestsUI(); }); }
-    function updateRequestsUI() {
-      const badge = document.getElementById('requestsBadge');
-      const mobileBadge = document.getElementById('mobileRequestsBadge');
-      const desktopList = document.getElementById('friendRequestsList');
-      badge.textContent = pendingRequests.length;
-      badge.classList.toggle('hidden', pendingRequests.length === 0);
-      mobileBadge.textContent = pendingRequests.length;
-      mobileBadge.classList.toggle('hidden', pendingRequests.length === 0);
-      if (pendingRequests.length === 0) {
-        desktopList.innerHTML = '<p class="text-gray-500 text-sm text-center mt-4">Нет входящих запросов</p>';
-      } else {
-        const frag = document.createDocumentFragment();
-        pendingRequests.forEach(r => {
-          const div = document.createElement('div');
-          div.className = 'bg-purple-900/20 p-3 rounded-xl border border-purple-500/20';
-          div.innerHTML = `<p class="text-white text-sm font-semibold">${r.sender.displayName}${getVerifiedBadge(r.sender)}</p><p class="text-gray-400 text-xs mb-2">${r.sender.username}</p><div class="flex gap-2"><button class="btn-accept text-xs px-3 py-1.5">✓ Принять</button><button class="btn-danger text-xs px-3 py-1.5">✕ Отклонить</button></div>`;
-          div.querySelector('.btn-accept').onclick = () => acceptRequest(r.id);
-          div.querySelector('.btn-danger').onclick = () => rejectRequest(r.id);
-          frag.appendChild(div);
-        });
-        desktopList.innerHTML = ''; desktopList.appendChild(frag);
-      }
-      if (currentMobileTab === 'requests') renderMobileRequests();
-    }
-
+    function updateRequestsUI() { const badge = document.getElementById('requestsBadge'), mobileBadge = document.getElementById('mobileRequestsBadge'), desktopList = document.getElementById('friendRequestsList'); badge.textContent = pendingRequests.length; badge.classList.toggle('hidden', pendingRequests.length === 0); mobileBadge.textContent = pendingRequests.length; mobileBadge.classList.toggle('hidden', pendingRequests.length === 0); if (pendingRequests.length === 0) { desktopList.innerHTML = '<p class="text-gray-500 text-sm text-center mt-4">Нет входящих запросов</p>'; } else { const frag = document.createDocumentFragment(); pendingRequests.forEach(r => { const div = document.createElement('div'); div.className = 'bg-purple-900/20 p-3 rounded-xl border border-purple-500/20'; div.innerHTML = `<p class="text-white text-sm font-semibold">${r.sender.displayName}${getVerifiedBadge(r.sender)}</p><p class="text-gray-400 text-xs mb-2">${r.sender.username}</p><div class="flex gap-2"><button class="btn-accept text-xs px-3 py-1.5">✓ Принять</button><button class="btn-danger text-xs px-3 py-1.5">✕ Отклонить</button></div>`; div.querySelector('.btn-accept').onclick = () => acceptRequest(r.id); div.querySelector('.btn-danger').onclick = () => rejectRequest(r.id); frag.appendChild(div); }); desktopList.innerHTML = ''; desktopList.appendChild(frag); } if (currentMobileTab === 'requests') renderMobileRequests(); }
     window.acceptRequest = async (reqId) => { const req = await db.collection('friendRequests').doc(reqId).get(); const data = req.data(); await db.collection('friendships').add({ participants: [data.senderId, data.receiverId], createdAt: firebase.firestore.FieldValue.serverTimestamp() }); await db.collection('friendRequests').doc(reqId).update({ status: 'accepted' }); };
     window.rejectRequest = async (reqId) => { await db.collection('friendRequests').doc(reqId).update({ status: 'rejected' }); };
-    document.getElementById('searchUsers').addEventListener('input', async (e) => { const query = e.target.value.trim(), container = document.getElementById('searchResults'); if (query.length < 1) { container.classList.add('hidden'); return; } const searchLower = query.toLowerCase(); const snapshot = await db.collection('users').orderBy('username').get(); const results = []; snapshot.forEach(doc => { if (doc.id === currentUser.uid) return; const data = doc.data(); if (data.username && data.username.toLowerCase().includes(searchLower)) { const isFriend = friendsData.some(f => f.id === doc.id); results.push({ id: doc.id, ...data, isFriend }); } }); container.innerHTML = results.length === 0 ? '<p class="text-gray-500 text-xs px-3 py-2">Ничего не найдено</p>' : results.slice(0, 10).map(u => `<div class="flex items-center justify-between p-2 rounded-xl bg-black/20"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center text-white text-xs font-bold">${u.displayName[0]}</div><div><p class="text-white text-xs font-semibold">${u.displayName}${getVerifiedBadge(u)}</p><p class="text-gray-400 text-[10px]">${u.username}</p></div></div>${u.isFriend ? '<span class="text-green-400 text-xs">✓ Друг</span>' : `<button onclick="sendFriendRequest('${u.id}')" class="text-purple-400 hover:text-purple-200 text-xs bg-purple-900/30 px-2 py-1 rounded-lg"><i class="fas fa-user-plus mr-1"></i>Добавить</button>`}</div>`).join(''); container.classList.remove('hidden'); });
+    document.getElementById('searchUsers').addEventListener('input', async (e) => { const query = e.target.value.trim(), container = document.getElementById('searchResults'); if (query.length < 1) { container.classList.add('hidden'); return; } const searchLower = query.toLowerCase(); const snapshot = await db.collection('users').orderBy('username').get(); const results = []; snapshot.forEach(doc => { if (doc.id === currentUser.uid) return; const data = doc.data(); if (data.username && data.username.toLowerCase().includes(searchLower)) { const isFriend = friendsData.some(f => f.id === doc.id); results.push({ id: doc.id, ...data, isFriend }); } }); container.innerHTML = results.length === 0 ? '<p class="text-gray-500 text-xs px-3 py-2">Ничего не найдено</p>' : results.slice(0,10).map(u => `<div class="flex items-center justify-between p-2 rounded-xl bg-black/20"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center text-white text-xs font-bold">${u.displayName[0]}</div><div><p class="text-white text-xs font-semibold">${u.displayName}${getVerifiedBadge(u)}</p><p class="text-gray-400 text-[10px]">${u.username}</p></div></div>${u.isFriend?'<span class="text-green-400 text-xs">✓ Друг</span>':`<button onclick="sendFriendRequest('${u.id}')" class="text-purple-400 hover:text-purple-200 text-xs bg-purple-900/30 px-2 py-1 rounded-lg"><i class="fas fa-user-plus mr-1"></i>Добавить</button>`}</div>`).join(''); container.classList.remove('hidden'); });
     window.sendFriendRequest = async (receiverId) => { const existing = await db.collection('friendRequests').where('senderId', '==', currentUser.uid).where('receiverId', '==', receiverId).where('status', '==', 'pending').get(); if (!existing.empty) return alert('Запрос уже отправлен'); await db.collection('friendRequests').add({ senderId: currentUser.uid, receiverId, status: 'pending', createdAt: firebase.firestore.FieldValue.serverTimestamp() }); alert('Запрос в друзья отправлен!'); };
-    window.selectFriend = (fid) => { const friend = friendsData.find(f => f.id === fid); if (!friend) return; selectedFriend = friend; document.getElementById('chatTitle').innerHTML = selectedFriend.displayName + getVerifiedBadge(selectedFriend); document.getElementById('chatSubtitle').textContent = selectedFriend.username; document.getElementById('chatSubtitle').classList.remove('hidden'); document.getElementById('chatAvatar').textContent = selectedFriend.displayName[0]; document.getElementById('voiceCallBtn').classList.remove('hidden'); document.getElementById('videoCallBtn').classList.remove('hidden'); document.getElementById('voiceCallBtn').disabled = false; document.getElementById('videoCallBtn').disabled = false; document.getElementById('messageInputContainer').classList.remove('hidden'); renderFriendsList(); listenMessages(); if (currentMobileTab !== 'chats') switchMobileTab('chats'); };
-    function listenMessages() { if (messagesUnsubscribe) messagesUnsubscribe(); if (!selectedFriend) return; const pair = [currentUser.uid, selectedFriend.id].sort().join('_'); messagesUnsubscribe = db.collection('messages').where('pairId', '==', pair).orderBy('createdAt', 'asc').onSnapshot(snap => { const container = document.getElementById('messagesContainer'); if (snap.empty) { container.innerHTML = '<p class="text-gray-500 text-center mt-10">Нет сообщений. Напишите первое!</p>'; return; } const existingIds = new Set(); container.querySelectorAll('[data-msg-id]').forEach(el => existingIds.add(el.dataset.msgId)); snap.docChanges().forEach(change => { if (change.type === 'added' && !existingIds.has(change.doc.id)) { const m = change.doc.data(); const isMine = m.senderId === currentUser.uid; const div = document.createElement('div'); div.className = `flex ${isMine ? 'justify-end' : 'justify-start'} gap-2`; div.dataset.msgId = change.doc.id; div.innerHTML = `<div class="max-w-[70%] p-3 rounded-2xl ${isMine ? 'bg-blue-900/40 border border-blue-400/20' : 'bg-purple-900/30 border border-purple-500/20'}"><p class="text-sm text-gray-100">${escapeHtml(m.content)}</p><p class="text-[10px] text-gray-500 mt-1">${m.createdAt ? new Date(m.createdAt.toDate()).toLocaleTimeString() : ''}</p></div>`; container.appendChild(div); } }); if (snap.docChanges().some(c => c.type === 'added')) container.scrollTop = container.scrollHeight; }); }
+    window.selectFriend = (fid) => { const friend = friendsData.find(f => f.id === fid); if (!friend) return; selectedFriend = friend; document.getElementById('chatTitle').innerHTML = selectedFriend.displayName + getVerifiedBadge(selectedFriend); document.getElementById('chatSubtitle').textContent = selectedFriend.username; document.getElementById('chatSubtitle').classList.remove('hidden'); document.getElementById('chatAvatar').textContent = selectedFriend.displayName[0]; document.getElementById('voiceCallBtn').classList.remove('hidden'); document.getElementById('videoCallBtn').classList.remove('hidden'); document.getElementById('voiceCallBtn').disabled = false; document.getElementById('videoCallBtn').disabled = false; document.getElementById('messageInputContainer').classList.remove('hidden'); renderFriendsList(); listenMessages(); listenTyping(); if (currentMobileTab !== 'chats') switchMobileTab('chats'); };
+
+    function listenTyping() {
+      if (!selectedFriend) return;
+      const pair = [currentUser.uid, selectedFriend.id].sort().join('_');
+      db.collection('typing').doc(pair).onSnapshot((doc) => {
+        if (doc.exists && doc.data().userId !== currentUser.uid) {
+          document.getElementById('typingIndicator').classList.remove('hidden');
+        } else {
+          document.getElementById('typingIndicator').classList.add('hidden');
+        }
+      });
+    }
+
+    document.getElementById('messageInput').addEventListener('input', () => {
+      if (!selectedFriend) return;
+      const pair = [currentUser.uid, selectedFriend.id].sort().join('_');
+      db.collection('typing').doc(pair).set({ userId: currentUser.uid, timestamp: Date.now() });
+      clearTimeout(typingTimeout);
+      typingTimeout = setTimeout(() => {
+        db.collection('typing').doc(pair).delete();
+      }, 3000);
+    });
+
+    function listenMessages() { if (messagesUnsubscribe) messagesUnsubscribe(); if (!selectedFriend) return; const pair = [currentUser.uid, selectedFriend.id].sort().join('_'); messagesUnsubscribe = db.collection('messages').where('pairId', '==', pair).orderBy('createdAt', 'asc').onSnapshot(snap => { const container = document.getElementById('messagesContainer'); if (snap.empty) { container.innerHTML = '<p class="text-gray-500 text-center mt-10">Нет сообщений. Напишите первое!</p>'; return; } const existingIds = new Set(); container.querySelectorAll('[data-msg-id]').forEach(el => existingIds.add(el.dataset.msgId)); snap.docChanges().forEach(change => { if (change.type === 'added' && !existingIds.has(change.doc.id)) { const m = change.doc.data(); const isMine = m.senderId === currentUser.uid; const div = document.createElement('div'); div.className = 'flex ' + (isMine ? 'justify-end' : 'justify-start') + ' gap-2 msg-fade'; div.dataset.msgId = change.doc.id; div.innerHTML = `<div class="max-w-[70%] p-3 rounded-2xl ${isMine ? 'bg-blue-900/40 border border-blue-400/20' : 'bg-purple-900/30 border border-purple-500/20'}"><p class="text-sm text-gray-100">${escapeHtml(m.content)}</p><p class="text-[10px] text-gray-500 mt-1">${m.createdAt ? new Date(m.createdAt.toDate()).toLocaleTimeString() : ''}</p></div>`; container.appendChild(div); if (!isMine) sendPush(selectedFriend.displayName, m.content); } }); if (snap.docChanges().some(c => c.type === 'added')) container.scrollTop = container.scrollHeight; }); }
     function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
-    window.sendMessage = async () => { const input = document.getElementById('messageInput'), content = input.value.trim(); if (!content || !selectedFriend) return; const pair = [currentUser.uid, selectedFriend.id].sort().join('_'); await db.collection('messages').add({ pairId: pair, senderId: currentUser.uid, content, createdAt: firebase.firestore.FieldValue.serverTimestamp() }); input.value = ''; input.focus(); };
+    window.sendMessage = async () => { const input = document.getElementById('messageInput'), content = input.value.trim(); if (!content || !selectedFriend) return; const pair = [currentUser.uid, selectedFriend.id].sort().join('_'); await db.collection('messages').add({ pairId: pair, senderId: currentUser.uid, content, createdAt: firebase.firestore.FieldValue.serverTimestamp() }); db.collection('typing').doc(pair).delete(); input.value = ''; input.focus(); };
     document.getElementById('messageInput').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
 
     async function getMedia(kind) { try { return await navigator.mediaDevices.getUserMedia({ audio: true, video: kind === 'video' }); } catch (e) { alert('Пожалуйста, разрешите доступ к камере/микрофону в настройках браузера.'); throw e; } }
-    function listenIncomingCalls() { if (callsUnsubscribe) callsUnsubscribe(); callsUnsubscribe = db.collection('calls').where('receiverId', '==', currentUser.uid).where('status', '==', 'ringing').onSnapshot(snap => { snap.docChanges().forEach(async change => { if (change.type === 'added') { const d = change.doc.data(), caller = await db.collection('users').doc(d.callerId).get(); if (!caller.exists) return; document.getElementById('incomingCallerName').innerHTML = `${caller.data().displayName}${getVerifiedBadge(caller.data())} (${caller.data().username})`; document.getElementById('incomingCallModal').classList.remove('hidden'); ringtone.play().catch(() => {}); currentCallData = { callId: change.doc.id, type: d.type, friendId: d.callerId }; } }); }); }
+    function listenIncomingCalls() { if (callsUnsubscribe) callsUnsubscribe(); callsUnsubscribe = db.collection('calls').where('receiverId', '==', currentUser.uid).where('status', '==', 'ringing').onSnapshot(snap => { snap.docChanges().forEach(async change => { if (change.type === 'added') { const d = change.doc.data(), caller = await db.collection('users').doc(d.callerId).get(); if (!caller.exists) return; document.getElementById('incomingCallerName').innerHTML = `${caller.data().displayName}${getVerifiedBadge(caller.data())} (${caller.data().username})`; document.getElementById('incomingCallModal').classList.remove('hidden'); if (notificationsEnabled) ringtone.play().catch(() => {}); sendPush('Входящий вызов в glypchat', `Вам звонит ${caller.data().displayName}`); currentCallData = { callId: change.doc.id, type: d.type, friendId: d.callerId }; } }); }); }
     window.startCall = async (type) => { if (!selectedFriend) return; try { localStream = await getMedia(type); document.getElementById('localVideo').srcObject = localStream; const callId = db.collection('calls').doc().id; currentCallData = { callId, type, friendId: selectedFriend.id }; await db.collection('calls').doc(callId).set({ callerId: currentUser.uid, receiverId: selectedFriend.id, type, status: 'ringing', createdAt: firebase.firestore.FieldValue.serverTimestamp() }); document.getElementById('activeCallModal').classList.remove('hidden'); startCallTimer(); updateCallButtons(type); listenCallSignals(callId, true); } catch (e) { console.error(e); } };
     function listenCallSignals(callId, isCaller) { if (callSignalingUnsubscribe) callSignalingUnsubscribe(); callSignalingUnsubscribe = db.collection('calls').doc(callId).onSnapshot(async (doc) => { if (!doc.exists) return; const data = doc.data(); if (data.status === 'rejected' || data.status === 'ended') { endCall(); return; } if (data.status === 'accepted' && !peerConnection) { await createPeerConnection(callId); if (isCaller) { const offer = await peerConnection.createOffer(); await peerConnection.setLocalDescription(offer); await db.collection('calls').doc(callId).update({ offer: JSON.stringify(offer) }); } } if (data.offer && peerConnection && !peerConnection.currentRemoteDescription && !isCaller) { await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(data.offer))); const answer = await peerConnection.createAnswer(); await peerConnection.setLocalDescription(answer); await db.collection('calls').doc(callId).update({ answer: JSON.stringify(answer) }); } if (data.answer && peerConnection && !peerConnection.currentRemoteDescription && isCaller) { await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(data.answer))); } if (data.iceCandidate && peerConnection) { await peerConnection.addIceCandidate(new RTCIceCandidate(JSON.parse(data.iceCandidate))); } }); }
     async function createPeerConnection(callId) { peerConnection = new RTCPeerConnection(rtcConfig); localStream.getTracks().forEach(t => peerConnection.addTrack(t, localStream)); peerConnection.ontrack = (e) => { document.getElementById('remoteVideo').srcObject = e.streams[0]; }; peerConnection.onicecandidate = (e) => { if (e.candidate) db.collection('calls').doc(callId).update({ iceCandidate: JSON.stringify(e.candidate) }); }; }
@@ -645,6 +557,8 @@
     window.toggleMic = () => { if (!localStream) return; const audioTrack = localStream.getAudioTracks()[0]; if (audioTrack) { audioTrack.enabled = !audioTrack.enabled; document.getElementById('micToggleBtn').classList.toggle('active', audioTrack.enabled); document.getElementById('micToggleBtn').classList.toggle('danger', !audioTrack.enabled); } };
     window.toggleCam = () => { if (!localStream) return; const videoTrack = localStream.getVideoTracks()[0]; if (videoTrack) { videoTrack.enabled = !videoTrack.enabled; document.getElementById('camToggleBtn').classList.toggle('active', videoTrack.enabled); document.getElementById('camToggleBtn').classList.toggle('danger', !videoTrack.enabled); } };
     document.addEventListener('click', (e) => { if (!e.target.closest('#searchUsers') && !e.target.closest('#searchResults')) document.getElementById('searchResults').classList.add('hidden'); });
+    applyNotifySetting();
+    requestNotificationPermission();
     setupUsername();
   </script>
 </body>
