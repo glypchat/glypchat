@@ -109,6 +109,21 @@
     ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 8px; }
     .hidden { display: none !important; }
 
+    /* Splash Screen */
+    #loading-screen {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #0b0a12; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .splash-logo {
+      font-weight: 900; font-size: 2rem; color: #60a5fa;
+      animation: splashPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes splashPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+
     .logo-static { font-weight: 900; color: #60a5fa; letter-spacing: -0.5px; }
 
     .main-app {
@@ -170,7 +185,6 @@
     .call-btn:hover { background: rgba(124, 58, 237, 0.3); box-shadow: 0 0 18px #7c3aedcc; }
     .call-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 
-    /* Тумблер */
     .switch { position: relative; display: inline-block; width: 48px; height: 26px; }
     .switch input { opacity: 0; width: 0; height: 0; }
     .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(124,58,237,0.3); transition: 0.3s; border-radius: 26px; }
@@ -178,7 +192,6 @@
     input:checked + .slider { background-color: #10b981; }
     input:checked + .slider:before { transform: translateX(22px); }
 
-    /* Точки печати */
     .typing-dots { display: inline-flex; gap: 3px; align-items: center; margin-left: 4px; }
     .typing-dots span { width: 4px; height: 4px; border-radius: 50%; background: #a78bfa; animation: typingDot 1.4s infinite; }
     .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
@@ -208,7 +221,13 @@
   <div class="animated-bg"></div>
   <div class="bg-particles"></div>
 
-  <div id="auth-screen" class="auth-overlay">
+  <!-- SPLASH SCREEN -->
+  <div id="loading-screen">
+    <div class="splash-logo">glypchat</div>
+  </div>
+
+  <!-- ЭКРАН АВТОРИЗАЦИИ -->
+  <div id="auth-screen" class="auth-overlay hidden">
     <div class="glass-form w-full max-w-md mx-4 p-7 md:p-8 text-gray-200">
       <div class="text-center mb-6"><div class="text-4xl mb-2">🌌</div><h2 class="text-2xl font-bold text-white" id="authTitle">glypchat • Регистрация</h2><p class="text-purple-300/70 text-sm mt-1">Приватное общение с друзьями</p></div>
       <form id="authForm" class="space-y-4" novalidate>
@@ -225,6 +244,7 @@
     </div>
   </div>
 
+  <!-- ЭКРАН ПОДТВЕРЖДЕНИЯ ПОЧТЫ -->
   <div id="verifyEmailScreen" class="auth-overlay hidden">
     <div class="glass-form w-full max-w-md mx-4 p-7 md:p-8 text-gray-200">
       <div class="text-center mb-6"><div class="text-5xl mb-3">📧</div><h2 class="text-2xl font-bold text-white">glypchat • Подтвердите почту</h2><p class="text-purple-300/70 text-sm mt-2">Мы отправили письмо на <strong id="verifyEmailAddress"></strong></p><p class="text-gray-400 text-xs mt-1">Пожалуйста, проверьте папку "Входящие" или "Спам"</p></div>
@@ -236,6 +256,7 @@
     </div>
   </div>
 
+  <!-- ОСНОВНОЙ ИНТЕРФЕЙС -->
   <div id="mainApp" class="main-app">
     <div class="app-container">
       <div class="glass-panel sidebar-panel">
@@ -320,6 +341,7 @@
     </div>
   </div>
 
+  <!-- МОБИЛЬНАЯ БОКОВАЯ ПАНЕЛЬ -->
   <div id="mobileSidebar" class="hidden fixed top-0 left-0 w-full h-full z-50 bg-black/60 backdrop-blur-sm">
     <div class="w-4/5 max-w-sm h-full glass-panel rounded-r-2xl p-4 overflow-y-auto">
       <div class="flex justify-between items-center mb-4"><h3 class="text-white font-semibold text-lg">Меню</h3><button onclick="toggleMobileSidebar()" class="text-white text-xl"><i class="fas fa-times"></i></button></div>
@@ -332,6 +354,7 @@
     </div>
   </div>
 
+  <!-- МОДАЛЬНЫЕ ОКНА ЗВОНКОВ -->
   <div id="incomingCallModal" class="call-modal hidden text-center">
     <div class="text-4xl mb-4">📞</div><div class="text-xl text-white font-semibold mb-1">Входящий звонок</div><p id="incomingCallerName" class="text-purple-300 text-lg mb-6"></p>
     <div class="flex gap-3 justify-center"><button onclick="acceptIncomingCall()" class="btn-accept px-8 py-3 rounded-2xl text-lg"><i class="fas fa-phone mr-2"></i>Принять</button><button onclick="rejectIncomingCall()" class="btn-danger px-8 py-3 rounded-2xl text-lg"><i class="fas fa-times mr-2"></i>Отклонить</button></div>
@@ -365,6 +388,14 @@
     let pendingRequests = [];
     let typingTimeout = null;
     let notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
+
+    // Скрываем все экраны кроме загрузки при старте
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('loading-screen').classList.remove('hidden');
+      document.getElementById('auth-screen').classList.add('hidden');
+      document.getElementById('verifyEmailScreen').classList.add('hidden');
+      document.getElementById('mainApp').style.display = 'none';
+    });
 
     function requestNotificationPermission() {
       if (notificationsEnabled && 'Notification' in window && Notification.permission === 'default') {
@@ -495,13 +526,49 @@
     function setupUsername() { const input = document.getElementById('usernameField'); if (!input) return; input.addEventListener('input', () => { let v = input.value; if (!v.startsWith('@')) v = '@' + v.replace(/@/g, ''); else v = '@' + v.substring(1).replace(/@/g, ''); input.value = v || '@'; }); input.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && input.selectionStart === 1) e.preventDefault(); }); if (input.value === '') input.value = '@'; }
     function showAuthError(msg) { const el = document.getElementById('authError'), s = document.getElementById('authSuccess'); el.textContent = msg; el.classList.remove('hidden'); s.classList.add('hidden'); setTimeout(() => el.classList.add('hidden'), 6000); }
     function showAuthSuccess(msg) { const el = document.getElementById('authSuccess'), e = document.getElementById('authError'); el.textContent = msg; el.classList.remove('hidden'); e.classList.add('hidden'); setTimeout(() => el.classList.add('hidden'), 6000); }
-    function showVerifyEmailScreen(user) { document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('verifyEmailScreen').classList.remove('hidden'); document.getElementById('verifyEmailAddress').textContent = user.email; }
+    function showVerifyEmailScreen(user) { document.getElementById('loading-screen').classList.add('hidden'); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('verifyEmailScreen').classList.remove('hidden'); document.getElementById('verifyEmailAddress').textContent = user.email; }
     async function resendVerificationEmail() { const user = auth.currentUser; if (!user) return; const btn = document.getElementById('resendVerificationBtn'); btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...'; try { await user.sendEmailVerification(); showAuthSuccess('Письмо отправлено повторно!'); } catch (e) { showAuthError(e.code==='auth/too-many-requests'?'Слишком много попыток.':'Ошибка: '+e.message); } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-envelope"></i> Отправить письмо ещё раз'; } }
-    async function checkEmailVerified() { const user = auth.currentUser; if (!user) return; try { await user.reload(); if (user.emailVerified) { await db.collection('users').doc(user.uid).update({ isVerified: false }); document.getElementById('verifyEmailScreen').classList.add('hidden'); const doc = await db.collection('users').doc(user.uid).get(); if (doc.exists) { currentUser = { uid: user.uid, ...doc.data() }; await db.collection('users').doc(user.uid).update({ status: 'online' }); document.getElementById('mainApp').style.display = 'block'; enterApp(); } } else showAuthError('Почта ещё не подтверждена.'); } catch (e) { showAuthError('Ошибка: '+e.message); } }
+    async function checkEmailVerified() { const user = auth.currentUser; if (!user) return; try { await user.reload(); if (user.emailVerified) { await db.collection('users').doc(user.uid).update({ isVerified: false }); document.getElementById('verifyEmailScreen').classList.add('hidden'); const doc = await db.collection('users').doc(user.uid).get(); if (doc.exists) { currentUser = { uid: user.uid, ...doc.data() }; await db.collection('users').doc(user.uid).update({ status: 'online' }); document.getElementById('loading-screen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'block'; enterApp(); } } else showAuthError('Почта ещё не подтверждена.'); } catch (e) { showAuthError('Ошибка: '+e.message); } }
 
     document.getElementById('toggleAuthBtn').addEventListener('click', (e) => { e.preventDefault(); isLoginMode = !isLoginMode; if (isLoginMode) { document.getElementById('authTitle').textContent = 'glypchat • Вход'; document.getElementById('submitBtnText').textContent = 'Войти'; document.getElementById('toggleText').textContent = 'Нет аккаунта?'; document.getElementById('toggleAuthBtn').textContent = 'Регистрация'; document.getElementById('displayNameGroup').classList.add('hidden'); document.getElementById('confirmPasswordGroup').classList.add('hidden'); } else { document.getElementById('authTitle').textContent = 'glypchat • Регистрация'; document.getElementById('submitBtnText').textContent = 'Зарегистрироваться'; document.getElementById('toggleText').textContent = 'Уже есть аккаунт?'; document.getElementById('toggleAuthBtn').textContent = 'Войти'; document.getElementById('displayNameGroup').classList.remove('hidden'); document.getElementById('confirmPasswordGroup').classList.remove('hidden'); } });
-    document.getElementById('authForm').addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('emailField').value.trim(), pass = document.getElementById('passwordField').value, username = document.getElementById('usernameField').value, displayName = document.getElementById('displayName').value.trim(); if (username === '@' || username.length < 2) return showAuthError('Введите username после @'); if (pass.length < 6) return showAuthError('Пароль минимум 6 символов'); try { if (isLoginMode) { const uc = await auth.signInWithEmailAndPassword(email, pass); const u = uc.user; if (!u.emailVerified) { showVerifyEmailScreen(u); return; } const doc = await db.collection('users').doc(u.uid).get(); if (!doc.exists) { await auth.signOut(); return showAuthError('Профиль не найден'); } currentUser = { uid: u.uid, ...doc.data() }; await db.collection('users').doc(u.uid).update({ status: 'online' }); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'block'; enterApp(); } else { if (!displayName) return showAuthError('Введите имя'); if (pass !== document.getElementById('confirmPasswordField').value) { document.getElementById('passwordMatchError').classList.remove('hidden'); return; } const snap = await db.collection('users').where('username', '==', username).get(); if (!snap.empty) return showAuthError('Этот username уже занят'); const cred = await auth.createUserWithEmailAndPassword(email, pass); const u = cred.user; await db.collection('users').doc(u.uid).set({ username, displayName, email, status: 'online', isVerified: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() }); await u.sendEmailVerification(); showVerifyEmailScreen(u); } } catch (err) { showAuthError(err.message); } });
-    auth.onAuthStateChanged(async (user) => { if (user) { if (!user.emailVerified) { showVerifyEmailScreen(user); return; } const doc = await db.collection('users').doc(user.uid).get(); if (!doc.exists) { await auth.signOut(); return; } currentUser = { uid: user.uid, ...doc.data() }; await db.collection('users').doc(user.uid).update({ status: 'online' }); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('verifyEmailScreen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'block'; enterApp(); } else { if (currentUser) await db.collection('users').doc(currentUser.uid).update({ status: 'offline' }); currentUser = null; document.getElementById('auth-screen').classList.remove('hidden'); document.getElementById('verifyEmailScreen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'none'; cleanupListeners(); } });
+    document.getElementById('authForm').addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('emailField').value.trim(), pass = document.getElementById('passwordField').value, username = document.getElementById('usernameField').value, displayName = document.getElementById('displayName').value.trim(); if (username === '@' || username.length < 2) return showAuthError('Введите username после @'); if (pass.length < 6) return showAuthError('Пароль минимум 6 символов'); try { if (isLoginMode) { const uc = await auth.signInWithEmailAndPassword(email, pass); const u = uc.user; if (!u.emailVerified) { showVerifyEmailScreen(u); return; } const doc = await db.collection('users').doc(u.uid).get(); if (!doc.exists) { await auth.signOut(); return showAuthError('Профиль не найден'); } currentUser = { uid: u.uid, ...doc.data() }; await db.collection('users').doc(u.uid).update({ status: 'online' }); document.getElementById('loading-screen').classList.add('hidden'); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'block'; enterApp(); } else { if (!displayName) return showAuthError('Введите имя'); if (pass !== document.getElementById('confirmPasswordField').value) { document.getElementById('passwordMatchError').classList.remove('hidden'); return; } const snap = await db.collection('users').where('username', '==', username).get(); if (!snap.empty) return showAuthError('Этот username уже занят'); const cred = await auth.createUserWithEmailAndPassword(email, pass); const u = cred.user; await db.collection('users').doc(u.uid).set({ username, displayName, email, status: 'online', isVerified: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() }); await u.sendEmailVerification(); showVerifyEmailScreen(u); } } catch (err) { showAuthError(err.message); } });
+
+    // ИСПРАВЛЕННЫЙ СЛУШАТЕЛЬ АВТОРИЗАЦИИ
+    auth.onAuthStateChanged(async (user) => {
+      // Экран загрузки всегда видим до завершения проверки
+      document.getElementById('loading-screen').classList.remove('hidden');
+      
+      if (user) {
+        if (!user.emailVerified) {
+          document.getElementById('loading-screen').classList.add('hidden');
+          showVerifyEmailScreen(user);
+          return;
+        }
+        const doc = await db.collection('users').doc(user.uid).get();
+        if (!doc.exists) {
+          await auth.signOut();
+          document.getElementById('loading-screen').classList.add('hidden');
+          document.getElementById('auth-screen').classList.remove('hidden');
+          return;
+        }
+        currentUser = { uid: user.uid, ...doc.data() };
+        await db.collection('users').doc(user.uid).update({ status: 'online' });
+        document.getElementById('loading-screen').classList.add('hidden');
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('verifyEmailScreen').classList.add('hidden');
+        document.getElementById('mainApp').style.display = 'block';
+        enterApp();
+      } else {
+        if (currentUser) await db.collection('users').doc(currentUser.uid).update({ status: 'offline' });
+        currentUser = null;
+        document.getElementById('loading-screen').classList.add('hidden');
+        document.getElementById('auth-screen').classList.remove('hidden');
+        document.getElementById('verifyEmailScreen').classList.add('hidden');
+        document.getElementById('mainApp').style.display = 'none';
+        cleanupListeners();
+      }
+    });
+
     function cleanupListeners() { if (messagesUnsubscribe) { messagesUnsubscribe(); messagesUnsubscribe = null; } if (callsUnsubscribe) { callsUnsubscribe(); callsUnsubscribe = null; } if (callSignalingUnsubscribe) { callSignalingUnsubscribe(); callSignalingUnsubscribe = null; } }
     window.logout = () => auth.signOut();
 
