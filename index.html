@@ -109,7 +109,6 @@
     ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 8px; }
     .hidden { display: none !important; }
 
-    /* Splash Screen */
     #loading-screen {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: #0b0a12; z-index: 9999;
@@ -221,12 +220,10 @@
   <div class="animated-bg"></div>
   <div class="bg-particles"></div>
 
-  <!-- SPLASH SCREEN -->
   <div id="loading-screen">
     <div class="splash-logo">glypchat</div>
   </div>
 
-  <!-- ЭКРАН АВТОРИЗАЦИИ -->
   <div id="auth-screen" class="auth-overlay hidden">
     <div class="glass-form w-full max-w-md mx-4 p-7 md:p-8 text-gray-200">
       <div class="text-center mb-6"><div class="text-4xl mb-2">🌌</div><h2 class="text-2xl font-bold text-white" id="authTitle">glypchat • Регистрация</h2><p class="text-purple-300/70 text-sm mt-1">Приватное общение с друзьями</p></div>
@@ -244,7 +241,6 @@
     </div>
   </div>
 
-  <!-- ЭКРАН ПОДТВЕРЖДЕНИЯ ПОЧТЫ -->
   <div id="verifyEmailScreen" class="auth-overlay hidden">
     <div class="glass-form w-full max-w-md mx-4 p-7 md:p-8 text-gray-200">
       <div class="text-center mb-6"><div class="text-5xl mb-3">📧</div><h2 class="text-2xl font-bold text-white">glypchat • Подтвердите почту</h2><p class="text-purple-300/70 text-sm mt-2">Мы отправили письмо на <strong id="verifyEmailAddress"></strong></p><p class="text-gray-400 text-xs mt-1">Пожалуйста, проверьте папку "Входящие" или "Спам"</p></div>
@@ -256,7 +252,6 @@
     </div>
   </div>
 
-  <!-- ОСНОВНОЙ ИНТЕРФЕЙС -->
   <div id="mainApp" class="main-app">
     <div class="app-container">
       <div class="glass-panel sidebar-panel">
@@ -310,7 +305,11 @@
       <div id="mobileProfilePanel" class="glass-panel hidden flex-1 flex-col overflow-hidden">
         <h3 class="text-white font-semibold p-4 border-b border-purple-500/20">👤 Профиль</h3>
         <div class="flex-1 overflow-y-auto p-4 space-y-4">
-          <div class="text-center"><div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="profileAvatarLarge" class="text-2xl">?</div></div><p class="text-white font-semibold" id="profileDisplayName">—</p><p class="text-gray-400 text-sm" id="profileUsername">—</p></div>
+          <div class="text-center">
+            <div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="profileAvatarLarge" class="text-2xl">?</div></div>
+            <p class="text-white font-semibold" id="profileDisplayName">—</p>
+            <p class="text-gray-400 text-sm" id="profileUsername">—</p>
+          </div>
           <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Никнейм</label><input type="text" id="editDisplayName" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
           <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label><input type="text" id="editUsername" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
           <div class="flex items-center justify-between"><span class="text-white text-sm">🔔 Push-уведомления</span><label class="switch"><input type="checkbox" id="mobileNotifyToggle" onchange="saveNotifySetting()"><span class="slider"></span></label></div>
@@ -322,7 +321,11 @@
       <div id="desktopProfileModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center">
         <div class="glass-form w-full max-w-md mx-4 p-7 text-gray-200">
           <h3 class="text-white font-semibold text-lg mb-4 text-center">👤 Профиль</h3>
-          <div class="text-center mb-4"><div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="desktopProfileAvatarLarge" class="text-2xl">?</div></div><p class="text-white font-semibold" id="desktopProfileDisplayName">—</p><p class="text-gray-400 text-sm" id="desktopProfileUsername">—</p></div>
+          <div class="text-center mb-4">
+            <div class="avatar-ring w-20 h-20 mx-auto mb-3"><div id="desktopProfileAvatarLarge" class="text-2xl">?</div></div>
+            <p class="text-white font-semibold" id="desktopProfileDisplayName">—</p>
+            <p class="text-gray-400 text-sm" id="desktopProfileUsername">—</p>
+          </div>
           <div class="space-y-4">
             <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Никнейм</label><input type="text" id="desktopEditDisplayName" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
             <div><label class="block text-xs font-medium text-purple-200/80 mb-1 ml-1">Username</label><input type="text" id="desktopEditUsername" class="w-full px-4 py-3 rounded-2xl input-glow text-sm placeholder-gray-500"></div>
@@ -341,7 +344,6 @@
     </div>
   </div>
 
-  <!-- МОБИЛЬНАЯ БОКОВАЯ ПАНЕЛЬ -->
   <div id="mobileSidebar" class="hidden fixed top-0 left-0 w-full h-full z-50 bg-black/60 backdrop-blur-sm">
     <div class="w-4/5 max-w-sm h-full glass-panel rounded-r-2xl p-4 overflow-y-auto">
       <div class="flex justify-between items-center mb-4"><h3 class="text-white font-semibold text-lg">Меню</h3><button onclick="toggleMobileSidebar()" class="text-white text-xl"><i class="fas fa-times"></i></button></div>
@@ -354,7 +356,6 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНЫЕ ОКНА ЗВОНКОВ -->
   <div id="incomingCallModal" class="call-modal hidden text-center">
     <div class="text-4xl mb-4">📞</div><div class="text-xl text-white font-semibold mb-1">Входящий звонок</div><p id="incomingCallerName" class="text-purple-300 text-lg mb-6"></p>
     <div class="flex gap-3 justify-center"><button onclick="acceptIncomingCall()" class="btn-accept px-8 py-3 rounded-2xl text-lg"><i class="fas fa-phone mr-2"></i>Принять</button><button onclick="rejectIncomingCall()" class="btn-danger px-8 py-3 rounded-2xl text-lg"><i class="fas fa-times mr-2"></i>Отклонить</button></div>
@@ -389,7 +390,6 @@
     let typingTimeout = null;
     let notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
 
-    // Скрываем все экраны кроме загрузки при старте
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('loading-screen').classList.remove('hidden');
       document.getElementById('auth-screen').classList.add('hidden');
@@ -427,7 +427,7 @@
 
     function openDesktopProfile() {
       document.getElementById('desktopProfileAvatarLarge').textContent = currentUser.displayName[0];
-      document.getElementById('desktopProfileDisplayName').textContent = currentUser.displayName;
+      document.getElementById('desktopProfileDisplayName').innerHTML = currentUser.displayName + getVerifiedBadge(currentUser);
       document.getElementById('desktopProfileUsername').textContent = currentUser.username;
       document.getElementById('desktopEditDisplayName').value = currentUser.displayName;
       document.getElementById('desktopEditUsername').value = currentUser.username;
@@ -467,7 +467,7 @@
       document.getElementById('tabChats').classList.remove('active');
       document.getElementById('tabRequests').classList.remove('active');
       document.getElementById('profileAvatarLarge').textContent = currentUser.displayName[0];
-      document.getElementById('profileDisplayName').textContent = currentUser.displayName;
+      document.getElementById('profileDisplayName').innerHTML = currentUser.displayName + getVerifiedBadge(currentUser);
       document.getElementById('profileUsername').textContent = currentUser.username;
       document.getElementById('editDisplayName').value = currentUser.displayName;
       document.getElementById('editUsername').value = currentUser.username;
@@ -486,7 +486,7 @@
       }
       await db.collection('users').doc(currentUser.uid).update({ displayName: newDisplayName, username: newUsername });
       currentUser.displayName = newDisplayName; currentUser.username = newUsername;
-      document.getElementById('profileDisplayName').textContent = newDisplayName;
+      document.getElementById('profileDisplayName').innerHTML = newDisplayName + getVerifiedBadge(currentUser);
       document.getElementById('profileUsername').textContent = newUsername;
       updateProfileUI();
       document.getElementById('profileAvatarLarge').textContent = newDisplayName[0];
@@ -533,24 +533,12 @@
     document.getElementById('toggleAuthBtn').addEventListener('click', (e) => { e.preventDefault(); isLoginMode = !isLoginMode; if (isLoginMode) { document.getElementById('authTitle').textContent = 'glypchat • Вход'; document.getElementById('submitBtnText').textContent = 'Войти'; document.getElementById('toggleText').textContent = 'Нет аккаунта?'; document.getElementById('toggleAuthBtn').textContent = 'Регистрация'; document.getElementById('displayNameGroup').classList.add('hidden'); document.getElementById('confirmPasswordGroup').classList.add('hidden'); } else { document.getElementById('authTitle').textContent = 'glypchat • Регистрация'; document.getElementById('submitBtnText').textContent = 'Зарегистрироваться'; document.getElementById('toggleText').textContent = 'Уже есть аккаунт?'; document.getElementById('toggleAuthBtn').textContent = 'Войти'; document.getElementById('displayNameGroup').classList.remove('hidden'); document.getElementById('confirmPasswordGroup').classList.remove('hidden'); } });
     document.getElementById('authForm').addEventListener('submit', async (e) => { e.preventDefault(); const email = document.getElementById('emailField').value.trim(), pass = document.getElementById('passwordField').value, username = document.getElementById('usernameField').value, displayName = document.getElementById('displayName').value.trim(); if (username === '@' || username.length < 2) return showAuthError('Введите username после @'); if (pass.length < 6) return showAuthError('Пароль минимум 6 символов'); try { if (isLoginMode) { const uc = await auth.signInWithEmailAndPassword(email, pass); const u = uc.user; if (!u.emailVerified) { showVerifyEmailScreen(u); return; } const doc = await db.collection('users').doc(u.uid).get(); if (!doc.exists) { await auth.signOut(); return showAuthError('Профиль не найден'); } currentUser = { uid: u.uid, ...doc.data() }; await db.collection('users').doc(u.uid).update({ status: 'online' }); document.getElementById('loading-screen').classList.add('hidden'); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('mainApp').style.display = 'block'; enterApp(); } else { if (!displayName) return showAuthError('Введите имя'); if (pass !== document.getElementById('confirmPasswordField').value) { document.getElementById('passwordMatchError').classList.remove('hidden'); return; } const snap = await db.collection('users').where('username', '==', username).get(); if (!snap.empty) return showAuthError('Этот username уже занят'); const cred = await auth.createUserWithEmailAndPassword(email, pass); const u = cred.user; await db.collection('users').doc(u.uid).set({ username, displayName, email, status: 'online', isVerified: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() }); await u.sendEmailVerification(); showVerifyEmailScreen(u); } } catch (err) { showAuthError(err.message); } });
 
-    // ИСПРАВЛЕННЫЙ СЛУШАТЕЛЬ АВТОРИЗАЦИИ
     auth.onAuthStateChanged(async (user) => {
-      // Экран загрузки всегда видим до завершения проверки
       document.getElementById('loading-screen').classList.remove('hidden');
-      
       if (user) {
-        if (!user.emailVerified) {
-          document.getElementById('loading-screen').classList.add('hidden');
-          showVerifyEmailScreen(user);
-          return;
-        }
+        if (!user.emailVerified) { document.getElementById('loading-screen').classList.add('hidden'); showVerifyEmailScreen(user); return; }
         const doc = await db.collection('users').doc(user.uid).get();
-        if (!doc.exists) {
-          await auth.signOut();
-          document.getElementById('loading-screen').classList.add('hidden');
-          document.getElementById('auth-screen').classList.remove('hidden');
-          return;
-        }
+        if (!doc.exists) { await auth.signOut(); document.getElementById('loading-screen').classList.add('hidden'); document.getElementById('auth-screen').classList.remove('hidden'); return; }
         currentUser = { uid: user.uid, ...doc.data() };
         await db.collection('users').doc(user.uid).update({ status: 'online' });
         document.getElementById('loading-screen').classList.add('hidden');
@@ -601,9 +589,7 @@
       const pair = [currentUser.uid, selectedFriend.id].sort().join('_');
       db.collection('typing').doc(pair).set({ userId: currentUser.uid, timestamp: Date.now() });
       clearTimeout(typingTimeout);
-      typingTimeout = setTimeout(() => {
-        db.collection('typing').doc(pair).delete();
-      }, 3000);
+      typingTimeout = setTimeout(() => { db.collection('typing').doc(pair).delete(); }, 3000);
     });
 
     function listenMessages() { if (messagesUnsubscribe) messagesUnsubscribe(); if (!selectedFriend) return; const pair = [currentUser.uid, selectedFriend.id].sort().join('_'); messagesUnsubscribe = db.collection('messages').where('pairId', '==', pair).orderBy('createdAt', 'asc').onSnapshot(snap => { const container = document.getElementById('messagesContainer'); if (snap.empty) { container.innerHTML = '<p class="text-gray-500 text-center mt-10">Нет сообщений. Напишите первое!</p>'; return; } const existingIds = new Set(); container.querySelectorAll('[data-msg-id]').forEach(el => existingIds.add(el.dataset.msgId)); snap.docChanges().forEach(change => { if (change.type === 'added' && !existingIds.has(change.doc.id)) { const m = change.doc.data(); const isMine = m.senderId === currentUser.uid; const div = document.createElement('div'); div.className = 'flex ' + (isMine ? 'justify-end' : 'justify-start') + ' gap-2 msg-fade'; div.dataset.msgId = change.doc.id; div.innerHTML = `<div class="max-w-[70%] p-3 rounded-2xl ${isMine ? 'bg-blue-900/40 border border-blue-400/20' : 'bg-purple-900/30 border border-purple-500/20'}"><p class="text-sm text-gray-100">${escapeHtml(m.content)}</p><p class="text-[10px] text-gray-500 mt-1">${m.createdAt ? new Date(m.createdAt.toDate()).toLocaleTimeString() : ''}</p></div>`; container.appendChild(div); if (!isMine) sendPush(selectedFriend.displayName, m.content); } }); if (snap.docChanges().some(c => c.type === 'added')) container.scrollTop = container.scrollHeight; }); }
